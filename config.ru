@@ -1,0 +1,2 @@
+require 'clooney'
+Clooney.run!
