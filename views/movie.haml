@@ -1,0 +1,26 @@
+%li.movie
+  %h3.name= m.name
+  %p
+    Released&nbsp;
+    - if m.release > 0
+      %span.released_ago> #{m.release} day#{m.release != 1 ? 's': ''} ago
+    - elsif m.release < 0
+      %span.released_in> in #{-m.release} day#{m.release != 1 ? 's': ''}
+    - else
+      %span.released_today> today
+    , with George Clooney as
+    %span.character= m.character
+    - if m.imdb or m.metacritic or m.traileraddict or m.fandango
+      %ul.details
+        - if m.imdb
+          %li.imdb
+            %a(href="http://imdb.com/title/#{m.imdb}") Details
+        - if m.metacritic
+          %li.metacritic
+            %a(href="http://www.metacritic.com/film/titles/#{m.metacritic}") Reviews
+        - if m.traileraddict
+          %li.traileraddict
+            %a(href="http://traileraddict.com/tags/#{m.traileraddict}") Trailers
+        - if m.fandango
+          %li.fandango
+            %a(href="http://www.fandango.com/#{m.fandango}/movieoverview") Tickets

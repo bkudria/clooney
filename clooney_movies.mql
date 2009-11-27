@@ -1,42 +1,43 @@
 [{
-  "!pd:/film/actor/film": [{
-    "!index": null,
-    "id":     "/en/george_clooney",
-    "name":   null,
-    "type":   "/film/actor"
-  }],
-  "FBID137:film": [{
-    "FBID137:initial_release_date": [{
-      "type":    "/type/datetime",
-      "value>":   "%s",
-      "value<=": "%s"
-    }],
-    "type": "/film/film"
-  }],
-  "film": [{
-    "/common/topic/article": {
-      "guid":     null,
-      "optional": true,
-      "limit":    1
-    },
-    "id":            null,
-    "limit":         1,
-    "name":          null,
-    "optional":      true,
-    "type":          "/film/film",
-    "initial_release_date": null,
-    "key": [{
-      "namespace": "/source/fandango/movie",
-      "value":     null,
-      "optional":  true
-    }]
+  "limit": 10,
+  "type":  "/film/performance",
+  "/film/performance/actor": [{
+    "id":   "/en/george_clooney",
+    "type": "/film/actor"
   }],
   "character": {
-    "id":       null,
     "name":     null,
     "optional": true
   },
-  "limit": 10,
-  "sort":  "!pd:/film/actor/film.!index",
-  "type":  "/film/performance"
+  "film": {
+    "limit":         1,
+    "type":          "/film/film",
+    "q:initial_release_date": [{
+      "type":    "/type/datetime",
+      "value>":  "%s",
+      "value<=": "%s"
+    }],
+    "name":          null,
+    "initial_release_date": null,
+    "imdb:key": {
+      "namespace": "/authority/imdb/title",
+      "value":     null,
+      "optional":  true
+    },
+    "traileraddict:key": {
+      "namespace": "/source/traileraddict/movie",
+      "value":     null,
+      "optional":  true
+    },
+    "fandango:key": {
+      "namespace": "/source/fandango/movie",
+      "value":     null,
+      "optional":  true
+    },
+    "metacritic:key": {
+      "namespace": "/user/hal/metacritic/films",
+      "value":     null,
+      "optional":  true
+    }
+  }
 }]
