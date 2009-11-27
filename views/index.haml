@@ -8,19 +8,25 @@
   %body
     %h1
       George Clooney is in
-      %span.answer #{@current_movies.size}
-      movie#{@current_movies.size != 1 ? 's' : ''} right now.
-    %p.upcoming
-      (With
-      %span.answer #{@upcoming_movies.size}
-      in the pipeline!)
+      %span.answer #{@current_movies.size + 1}
+      movie#{@current_movies.size != 1 ? 's' : ''}
+      %em right now.
+    - if !@upcoming_movies.nil?
+      %h3.pipeline
+        (with
+        %span.answer #{@upcoming_movies.size}
+        in the pipeline!)
 
-    %h2.current Current Movies
-    %ul#current.movies
-      - @current_movies.each do |m|
-        = haml :movie, :locals => {:m => m}
+    #content
+      #current
+        %h2 Current Movies
+        %ul.movies
+          - @current_movies.each do |m|
+            = haml :movie, :locals => {:m => m}
 
-    %h2.upcoming Upcoming Movies
-    %ul#upcoming.movies
-      - @upcoming_movies.each do |m|
-        = haml :movie, :locals => {:m => m}
+      - if !@upcoming_movies.nil?
+        #upcoming
+          %h2 Upcoming Movies
+          %ul.movies
+            - @upcoming_movies.each do |m|
+              = haml :movie, :locals => {:m => m}

@@ -1,6 +1,6 @@
 %li.movie
   %h3.name= m.name
-  %p
+  %p.description
     Released&nbsp;
     - if m.release > 0
       %span.released_ago> #{m.release} day#{m.release != 1 ? 's': ''} ago
@@ -8,7 +8,9 @@
       %span.released_in> in #{-m.release} day#{m.release != 1 ? 's': ''}
     - else
       %span.released_today> today
-    , with George Clooney as
+    , with
+    %span.gc George Clooney
+    as
     %span.character= m.character
     - if m.imdb or m.metacritic or m.traileraddict or m.fandango
       %ul.details

@@ -1,0 +1,97 @@
+body
+  background:
+    color: #fffada
+  font:
+    family: Corbel
+
+  h1, h3.pipeline
+    text-align: center
+    margin: 0
+    font:
+      family: Constantia, "Helvetica Neue", Helvetica, Candara, Verdana, Arial
+      variant: small-caps
+      size: 350%
+      weight: normal
+
+  h3.pipeline
+    text-align: right
+    font:
+      size: 90%
+      weight: bold
+    margin-top: -3.4em
+    width: 88%
+
+
+  h1
+    .answer
+      text-shadow:  #fff 1px 1px 0
+
+  .answer
+    font:
+      size: 200%
+      family: Constantia, Georgia
+      weight: bold
+
+  #content
+    margin: 0 auto
+    width: 80%
+
+    #current, #upcoming
+      display: block
+      float: left
+
+      h2
+        text-align: center
+        margin-bottom: 0
+        font:
+          family: Constantia
+
+      ul.movies
+        list-style: none
+
+        li.movie
+          h3.name
+            clear: both
+            font-style: italic
+            margin:
+              bottom: 0
+
+          p.description
+            padding-left: 1em
+            margin: 0
+
+            .gc
+              font:
+                weight: bold
+
+            .character
+              font-style: italic
+
+            .released_today
+              color: #00bf00
+            .released_ago
+              color: #008c00
+            .released_in
+              color: #9c0e0e
+
+          ul.details
+            display: block
+            padding-left: 1em
+            margin-bottom: 3em
+            li
+              float: left
+              display: block
+              padding-right: 1em
+              margin-right: 1ex
+              a
+                text-decoration: none
+
+    #current
+      font-size: 120%
+      width: 60%
+        
+    #upcoming
+      font-size: 95%
+      width: 40%
+      margin-top: 2%
+      opacity: 0.6

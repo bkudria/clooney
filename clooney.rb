@@ -29,11 +29,13 @@ class Clooney < Sinatra::Base
     enable  :static
   end
 
+  configure :development do
+    FREEBASE_HEADERS = {'X-Requested-With' => 'Secret App 1.0', 'Cache-Control' => "no-cache"}
+  end
+
   configure :production do
     disable :logging
     set :port, 80
-
-    correct_password = File.read('password').strip
 
     use Rack::Auth::Basic do |username, password|
       [username, password] == ['admin', 'max']
@@ -76,7 +78,7 @@ class Clooney < Sinatra::Base
     @title = "How many movies is George Clooney in right now?"
     @current_movies  = extract_movies(query_freebase(gen_mql_query(*CURRENT_RANGE)))
     @upcoming_movies = extract_movies(query_freebase(gen_mql_query(*UPCOMING_RANGE)))
-    if @current_movies.nil? and @upcoming_movies.nil?
+    if @current_movies.nil?
       haml :error
     else
       haml :index
