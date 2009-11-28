@@ -3,11 +3,11 @@
   %p.description
     Released&nbsp;
     - if m.release > 0
-      %span.released_ago> #{m.release} day#{m.release != 1 ? 's': ''} ago
+      %abbr.released_ago(title="#{m.release_date}")> #{m.release} day#{m.release != 1 ? 's': ''} ago
     - elsif m.release < 0
-      %span.released_in> in #{-m.release} day#{m.release != 1 ? 's': ''}
+      %abbr.released_in(title="#{m.release_date}")> in #{-m.release} day#{m.release != 1 ? 's': ''}
     - else
-      %span.released_today> today
+      %abbr.released_today(title="#{m.release_date}")> today
     , with
     %span.gc George Clooney
     as

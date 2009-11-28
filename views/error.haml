@@ -1,0 +1,19 @@
+!!!
+%html
+  %head
+    %title= @title
+    %link(rel="stylesheet" href="/style.css" type="text/css" media="screen")
+    %link(rel="shortcut icon" href="/favicon.ico")
+
+  %body
+    %h1(title="See what I did there?")
+      George Clooney is in &hellip; oh god something broke. so sorry.
+
+    #content
+      %blockquote
+        %span.dq> &#147;
+        The hardest thing is trying not to correct everything on the Internet. It&rsquo;d be night and day &mdash; wrong, wrong, wrong, wrong. So you just have to say, &#147;All right, I&rsquo;ll take it, bring it on.&#148;
+        .gc(title='A.J. Jacobs, &#147;The 9:10 to Crazyland: George Clooney searches for George Clooney&#148;, Esquire, April 2008, pp. 104&ndash;105') George Clooney
+
+    %footer= haml :footer
+    %img.clooney(src="/clooney.png")

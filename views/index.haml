@@ -8,7 +8,7 @@
   %body
     %h1
       George Clooney is in
-      %span.answer #{@current_movies.size + 1}
+      %span.answer #{@current_movies.size}
       movie#{@current_movies.size != 1 ? 's' : ''}
       %em right now.
     - if !@upcoming_movies.nil?
@@ -30,3 +30,6 @@
           %ul.movies
             - @upcoming_movies.each do |m|
               = haml :movie, :locals => {:m => m}
+
+    %footer= haml :footer
+    %img.clooney(src="/clooney.png")

@@ -1,8 +1,27 @@
+*::-moz-selection
+  background: #664400
+  color: white
+  text-shadow: #996600 1px 1px 0
+
+*::selection
+  background: #664400
+  color: white
+  text-shadow: #996600 1px 1px 0
+
 body
-  background:
-    color: #fffada
+  background: #fffada
   font:
     family: Corbel
+  text-shadow: #fff 1px 1px 0
+  position: absolute
+  right: 0
+  left: 0
+  min-height: 98%
+
+  a
+    color: #000099
+    &:visited
+      color: #990099
 
   h1, h3.pipeline
     text-align: center
@@ -21,12 +40,8 @@ body
     margin-top: -3.4em
     width: 88%
 
-
-  h1
-    .answer
-      text-shadow:  #fff 1px 1px 0
-
   .answer
+    color: #996600
     font:
       size: 200%
       family: Constantia, Georgia
@@ -35,6 +50,32 @@ body
   #content
     margin: 0 auto
     width: 80%
+    margin-bottom: 2em
+
+    blockquote
+      font-family: Cambria, Constantia, Georgia
+      padding-left: 10px
+      line-height: 120%
+      width: 40%
+      margin: 0 auto
+      margin-top: 10%
+      text-align: justify
+      letter-spacing: 0.2ex
+
+      .dq
+        font:
+          size: 900%
+          weight: bold
+          family: Cambria, Constantia, Georgia
+        float: left
+        color: #333
+        height: 2ex
+        margin-top: 0.3ex
+        margin-left: -0.8ex
+
+      .gc
+        text-align: right
+        font-style: italic
 
     #current, #upcoming
       display: block
@@ -68,11 +109,11 @@ body
               font-style: italic
 
             .released_today
-              color: #00bf00
+              color: #00ee66
             .released_ago
-              color: #008c00
+              color: #009900
             .released_in
-              color: #9c0e0e
+              color: #990000
 
           ul.details
             display: block
@@ -95,3 +136,27 @@ body
       width: 40%
       margin-top: 2%
       opacity: 0.6
+
+  footer
+    text-align: center
+    font-size: 80%
+    position: absolute
+    bottom: 0
+    left: 0
+    height: 2em
+    width: 100%
+    margin-top: -4em
+    opacity: 0.3
+
+    a
+      text-decoration: none
+      color: #664400
+
+  .clooney
+    position: absolute
+    right: 0
+    bottom: 0
+    height: 600px
+    width: 375.37px
+    opacity: 0.1
+

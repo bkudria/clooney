@@ -1,0 +1,19 @@
+!!!
+%html
+  %head
+    %title= @title
+    %link(rel="stylesheet" href="/style.css" type="text/css" media="screen")
+    %link(rel="shortcut icon" href="/favicon.ico")
+
+  %body
+    %h1(title="I'm not sure how you can screw up something so simple.")
+      Huh? What are you talking about?
+
+    #content
+      %blockquote
+        %span.dq> &#147;
+        When you&rsquo;re young you believe it when people tell you how good you are. And that&rsquo;s the danger, you inhale. Everyone will tell you you&rsquo;re a genius, which you are not, and if you understand that, you win.        
+        .gc(title='Attributed') George Clooney
+
+    %footer= haml :footer
+    %img.clooney(src="/clooney.png")

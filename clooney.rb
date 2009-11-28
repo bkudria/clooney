@@ -3,7 +3,7 @@ require 'sinatra/base'
 
 require 'activesupport'
 require 'haml'
-require 'sass'
+require 'sass/plugin/rack'
 require 'typhoeus'
 require 'json'
 
@@ -27,6 +27,8 @@ class Clooney < Sinatra::Base
   configure do
     enable  :logging
     enable  :static
+    set :public, File.join(File.dirname(__FILE__), "public")
+    use Sass::Plugin::Rack
   end
 
   configure :development do
@@ -91,7 +93,7 @@ class Clooney < Sinatra::Base
   end
 
   not_found do
-    haml :error
+    haml :notfound
   end
 
   error do
