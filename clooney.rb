@@ -14,7 +14,6 @@ class Movie < Struct.new(:name, :character, :release_date, :fandango, :trailerad
   end
 end
 
-Exceptional.api_key = "ffaba9615edc90a149e12bc70f66f946681bb3ab"
 module Exceptional
   def self.handle_sinatra(exception, uri, request, params)
     e = Exceptional.parse(exception)
