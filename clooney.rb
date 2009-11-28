@@ -26,6 +26,7 @@ class Clooney < Sinatra::Base
   configure do
     enable  :logging
     enable  :static
+    disable :run
     set :public, File.join(File.dirname(__FILE__), "public")
   end
 
