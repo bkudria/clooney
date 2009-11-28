@@ -5,27 +5,12 @@ require 'activesupport'
 require 'haml'
 require 'sass'
 require 'typhoeus'
-require 'exceptional'
 require 'json'
 
+ClooneyError = Class.new(RuntimeError)
 class Movie < Struct.new(:name, :character, :release_date, :fandango, :traileraddict, :imdb, :metacritic)
   def release
     (Date.today - Date.parse(release_date)).to_i
-  end
-end
-
-module Exceptional
-  def self.handle_sinatra(exception, uri, request, params)
-    e = Exceptional.parse(exception)
-
-    e.framework = "sinatra"
-    e.controller_name = uri
-    e.occurred_at = Time.now.strftime("%Y%m%d %H:%M:%S %Z")
-    e.environment = request.env.to_hash
-    e.url = uri
-    e.parameters = params.to_hash
-
-    Exceptional.post e
   end
 end
 
@@ -88,7 +73,7 @@ get '/' do
   @current_movies  = extract_movies(query_freebase(gen_mql_query(*CURRENT_RANGE)))
   @upcoming_movies = extract_movies(query_freebase(gen_mql_query(*UPCOMING_RANGE)))
   if @current_movies.nil?
-    haml :error
+    raise ClooneyError
   else
     haml :index
   end
@@ -100,11 +85,13 @@ get '/style.css' do
 end
 
 not_found do
-  Exceptional.handle_sinatra(request.env['sinatra.error'], request.env['REQUEST_URI'], request, params)
   haml :notfound
 end
 
+error ClooneyError do
+  haml :error
+end
+
 error do
-  Exceptional.handle_sinatra(request.env['sinatra.error'], request.env['REQUEST_URI'], request, params)
   haml :error
 end
