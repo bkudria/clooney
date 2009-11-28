@@ -15,7 +15,7 @@ class Movie < Struct.new(:name, :character, :release_date, :fandango, :trailerad
 end
 
 MQLREAD_BASE_URI = 'http://api.freebase.com/api/service/mqlread'
-FREEBASE_HEADERS = {'X-Requested-With' => 'Secret App 1.0'}
+FREEBASE_HEADERS = {'X-Requested-With' => 'HowManyMoviesIsGeorgeClooneyIn.com 1.0'}
 
 CURRENT_RANGE  = [3.months.ago.to_date, Date.today]
 UPCOMING_RANGE = [Date.today, 5.years.from_now.to_date]
@@ -25,10 +25,12 @@ configure do
   enable  :static
   set :haml, {:format => :html5}
   set :sass, {:style => :compact}
+
+  # Our content doesn't change much
 end
 
 configure :development do
-  FREEBASE_HEADERS = {'X-Requested-With' => 'Secret App 1.0', 'Cache-Control' => "no-cache"}
+  FREEBASE_HEADERS = FREEBASE_HEADERS.merge({'Cache-Control' => "no-cache"})
 end
 
 configure :production do
@@ -69,6 +71,7 @@ helpers do
 end
 
 get '/' do
+  response["Cache-Control"] = "public, max-age=3600"
   @title = "How many movies is George Clooney in right now?"
   @current_movies  = extract_movies(query_freebase(gen_mql_query(*CURRENT_RANGE)))
   @upcoming_movies = extract_movies(query_freebase(gen_mql_query(*UPCOMING_RANGE)))
