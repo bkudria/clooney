@@ -33,10 +33,6 @@ end
 configure :production do
   disable :logging
   set :port, 80
-
-  use Rack::Auth::Basic do |username, password|
-    [username, password] == ['admin', 'max']
-  end
 end
 
 helpers do
