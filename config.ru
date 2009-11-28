@@ -1,2 +1,1 @@
 require 'clooney'
-Clooney.run!
