@@ -3,7 +3,6 @@ require 'sinatra/base'
 
 require 'activesupport'
 require 'haml'
-require 'sass/plugin/rack'
 require 'typhoeus'
 require 'json'
 
@@ -28,7 +27,6 @@ class Clooney < Sinatra::Base
     enable  :logging
     enable  :static
     set :public, File.join(File.dirname(__FILE__), "public")
-    use Sass::Plugin::Rack
   end
 
   configure :development do
