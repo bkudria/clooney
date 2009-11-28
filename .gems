@@ -1,0 +1,5 @@
+activesupport
+sinatra
+haml
+json
+typhoeus --source http://gemcutter.org
