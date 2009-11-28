@@ -5,11 +5,28 @@ require 'activesupport'
 require 'haml'
 require 'sass'
 require 'typhoeus'
+require 'exceptional'
 require 'json'
 
 class Movie < Struct.new(:name, :character, :release_date, :fandango, :traileraddict, :imdb, :metacritic)
   def release
     (Date.today - Date.parse(release_date)).to_i
+  end
+end
+
+Exceptional.api_key = "ffaba9615edc90a149e12bc70f66f946681bb3ab"
+module Exceptional
+  def self.handle_sinatra(exception, uri, request, params)
+    e = Exceptional.parse(exception)
+
+    e.framework = "sinatra"
+    e.controller_name = uri
+    e.occurred_at = Time.now.strftime("%Y%m%d %H:%M:%S %Z")
+    e.environment = request.env.to_hash
+    e.url = uri
+    e.parameters = params.to_hash
+
+    Exceptional.post e
   end
 end
 
@@ -84,9 +101,11 @@ get '/style.css' do
 end
 
 not_found do
+  Exceptional.handle_sinatra(request.env['sinatra.error'], request.env['REQUEST_URI'], request, params)
   haml :notfound
 end
 
 error do
+  Exceptional.handle_sinatra(request.env['sinatra.error'], request.env['REQUEST_URI'], request, params)
   haml :error
 end
