@@ -2,4 +2,5 @@ activesupport
 sinatra
 haml
 json
+exceptional
 typhoeus --source http://gemcutter.org
