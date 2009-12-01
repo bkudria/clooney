@@ -15,7 +15,7 @@ class Movie < Struct.new(:name, :character, :release_date, :fandango, :trailerad
 end
 
 MQLREAD_BASE_URI = 'http://api.freebase.com/api/service/mqlread'
-FREEBASE_HEADERS = {'X-Requested-With' => 'HowManyMoviesIsGeorgeClooneyIn.com 1.0'}
+FREEBASE_HEADERS = {'X-Requested-With' => 'HowManyMoviesIsGeorgeClooneyInRightNow.com 1.0'}
 
 CURRENT_RANGE  = [3.months.ago.to_date, Date.today]
 UPCOMING_RANGE = [Date.today, 5.years.from_now.to_date]
