@@ -21,12 +21,10 @@ CURRENT_RANGE  = [3.months.ago.to_date, Date.today]
 UPCOMING_RANGE = [Date.today, 5.years.from_now.to_date]
 
 configure do
-  enable  :logging
-  enable  :static
-  set :haml, {:format => :html5}
-  set :sass, {:style => :compact}
-
-  # Our content doesn't change much
+  set    :haml, {:format => :html5}
+  set    :sass, {:style  => :compact}
+  enable :logging
+  enable :static
 end
 
 configure :development do
@@ -45,12 +43,10 @@ helpers do
 
   def query_freebase(query)
     query_uri = "#{MQLREAD_BASE_URI}?query=#{{:query => query}.to_json}"
-    response = Typhoeus::Request.get(
-                                     query_uri,
-                                     :headers => FREEBASE_HEADERS,
-                                     :timeout => 5000,      # 5 Seconds
-                                     :cache_timeout => 3600 # 1 Hour
-                                     )
+    response  = Typhoeus::Request.get(query_uri,
+                                      :headers       => FREEBASE_HEADERS,
+                                      :timeout       => 5000, # 5 Seconds
+                                      :cache_timeout => 3600) # 1 Hour
     return response.code == 200 ? response.body : nil
   end
 
@@ -59,8 +55,8 @@ helpers do
     movies = JSON[response_body]["result"].map do |json|
       m = Movie.new
       m.name          = json["film"]["name"]
-      m.character     = json["character"]["name"] if json["character"]
       m.release_date  = json["film"]["initial_release_date"]
+      m.character     = json["character"]["name"] if json["character"]
       [:imdb, :fandango, :traileraddict, :metacritic].each do |key|
         mql_key = "#{key}:key"
         m[key] = json["film"][mql_key]["value"] if json["film"][mql_key] and json["film"][mql_key]["value"]
