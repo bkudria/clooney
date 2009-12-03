@@ -1,6 +1,6 @@
 [{
   "limit": 10,
-  "sort":  "-film.initial_release_date",
+  "sort":  "%s",
   "type":  "/film/performance",
   "/film/performance/actor": [{
     "id":   "/en/george_clooney",

@@ -17,8 +17,8 @@ end
 MQLREAD_BASE_URI = 'http://api.freebase.com/api/service/mqlread'
 FREEBASE_HEADERS = {'X-Requested-With' => 'HowManyMoviesIsGeorgeClooneyInRightNow.com 1.0'}
 
-CURRENT_RANGE  = [3.months.ago.to_date, Date.today]
-UPCOMING_RANGE = [Date.today, 5.years.from_now.to_date]
+CURRENT_PARAMS  = ['-film.initial_release_date', 3.months.ago.to_date, Date.today]
+UPCOMING_PARAMS = ['film.initial_release_date', Date.today, 5.years.from_now.to_date]
 
 configure do
   set    :haml, {:format => :html5}
@@ -37,8 +37,8 @@ configure :production do
 end
 
 helpers do
-  def gen_mql_query(from, to)
-    JSON[File.read('clooney_movies.mql') % [from.to_date, to.to_date]]
+  def gen_mql_query(sort_key, from, to)
+    JSON[File.read('clooney_movies.mql') % [sort_key, from.to_date, to.to_date]]
   end
 
   def query_freebase(query)
@@ -69,8 +69,8 @@ end
 get '/' do
   response["Cache-Control"] = "public, max-age=3600"
   @title = "How many movies is George Clooney in right now?"
-  @current_movies  = extract_movies(query_freebase(gen_mql_query(*CURRENT_RANGE)))
-  @upcoming_movies = extract_movies(query_freebase(gen_mql_query(*UPCOMING_RANGE)))
+  @current_movies  = extract_movies(query_freebase(gen_mql_query(*CURRENT_PARAMS)))
+  @upcoming_movies = extract_movies(query_freebase(gen_mql_query(*UPCOMING_PARAMS)))
   if @current_movies.nil?
     raise ClooneyError
   else
