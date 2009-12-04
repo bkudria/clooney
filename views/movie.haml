@@ -5,7 +5,7 @@
     - if m.release > 0
       %abbr.released_ago(title="#{m.release_date}")> #{m.release} day#{m.release != 1 ? 's': ''} ago
     - elsif m.release < 0
-      %abbr.released_in(title="#{m.release_date}")> in #{-m.release} day#{m.release != 1 ? 's': ''}
+      %abbr.released_in(title="#{m.release_date}")> in #{-m.release} day#{-m.release != 1 ? 's': ''}
     - else
       %abbr.released_today(title="#{m.release_date}")> today
     , with
