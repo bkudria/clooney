@@ -23,22 +23,26 @@
     "imdb:key": {
       "namespace": "/authority/imdb/title",
       "value":     null,
-      "optional":  true
+      "optional":  true,
+      "limit":     1
     },
     "traileraddict:key": {
       "namespace": "/source/traileraddict/movie",
       "value":     null,
-      "optional":  true
+      "optional":  true,
+      "limit":     1
     },
     "fandango:key": {
       "namespace": "/source/fandango/movie",
       "value":     null,
-      "optional":  true
+      "optional":  true,
+      "limit":     1
     },
     "metacritic:key": {
       "namespace": "/user/hal/metacritic/films",
       "value":     null,
-      "optional":  true
+      "optional":  true,
+      "limit":     1
     }
   }
 }]
